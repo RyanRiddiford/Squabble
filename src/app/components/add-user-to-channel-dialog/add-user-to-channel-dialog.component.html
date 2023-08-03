@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add User To Channel</h2>
+
+<mat-dialog-content [formGroup]="findUserByUsernameForm">
+  
+  <mat-form-field>
+    <input  matInput placeholder="Search" formControlName="username">
+  </mat-form-field>
+</mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-stroked-button color="primary" (click)="close()">Close</button>
+    <button mat-stroked-button color="accent"(click)="addUser()">Add</button>
+  </mat-dialog-actions>
+
+
+
+
+

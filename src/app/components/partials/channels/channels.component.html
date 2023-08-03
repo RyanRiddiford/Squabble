@@ -1,0 +1,114 @@
+<cdk-accordion class="thread-accordion" style="height: 500px; overflow-y: auto;">
+  <cdk-accordion-item *ngFor="let channel of channels; let index = index;" #accordionItem="cdkAccordionItem"
+    class="thread-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+    [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
+    <div
+      *ngIf="channel.canAccess"
+      class="thread-accordion-item-header"
+      (click)="accordionItem.toggle(); emitSelectedChannel(channel);"
+    >
+      <h5 style="font-weight: 300;">
+        <span class="thread-accordion-item-description">
+          {{ channel.channelName }}
+        </span>
+      </h5>
+    </div>
+
+    <div
+      *ngIf="!channel.canAccess"
+      class="thread-accordion-item-header thread-accordion-item-header-disabled"
+      matTooltip="As an admin/owner you can see the channel exists, but need someone to invite you to read messages."
+    >
+      <h5 style="font-weight: 300;">
+        <span class="thread-accordion-item-description">
+          {{ channel.channelName }}
+        </span>
+      </h5>
+    </div>
+
+
+    <div class="separator separator-dashed"></div>
+
+    <!--
+    <div class="thread-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
+      [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
+      <div class="d-flex flex-stack py-4">
+        <div class="d-flex align-items-center">
+          <div class="symbol symbol-45px symbol-circle">
+            <span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">
+              MM
+            </span>
+          </div>
+          <div class="ms-5">
+            <a class="
+                  fs-5
+                  fw-bolder
+                  text-gray-900 text-hover-primary
+                  mb-2
+                  cursor-pointer
+                ">
+              Melody Macy
+            </a>
+            <div class="fw-bold text-gray-400">melody@altbox.com</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-items-end">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+         <mat-menu #menu="matMenu">
+          <button mat-menu-item>User Management</button>
+          <button mat-menu-item>Delete</button>
+        </mat-menu>
+        </div>
+      </div>
+
+      <div class="d-flex flex-stack py-4">
+        <div class="d-flex align-items-center">
+          <div class="symbol symbol-45px symbol-circle">
+            <span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">
+              AL
+            </span>
+          </div>
+          <div class="ms-5">
+            <a class="
+                fs-5
+                fw-bolder
+                text-gray-900 text-hover-primary
+                mb-2
+                cursor-pointer
+              ">
+              Alex Lee
+            </a>
+            <div class="fw-bold text-gray-400">melody@altbox.com</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-items-end">
+            <mat-icon [matMenuTriggerFor]="menu" >more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>User Management</button>
+            <button mat-menu-item>Delete</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    -->
+  </cdk-accordion-item>
+</cdk-accordion>
+
+
+
+<div *ngIf="addingNewChannel">
+  <h2 class="text-center" style="font-weight: 700;">
+    <span class="thread-accordion-item-description">
+      <fa-icon [icon]="faSpinner" [pulse]="true" class="mt-3"></fa-icon>
+    </span>
+  </h2>
+</div>
+
+<button class="btn btn-success" style="width:100%; margin-top:30px;" (click)="createGroup()">New channel</button>
+
+<!--<a mat-list-item (click)="prepareToCall()">
+  <mat-icon matListIcon>phone</mat-icon>
+  <div style="color:red;"><h3 matLine> Call </h3></div>
+</a>-->

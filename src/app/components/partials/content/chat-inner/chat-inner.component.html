@@ -1,0 +1,83 @@
+<div style="height: 500px; overflow-y: scroll;" class="me-5 pe-5" id="messageWindow">
+  <ng-container *ngFor="let message of messages">
+    <div class="mb-10">
+      <div class="d-flex flex-column align-items"
+        [ngClass]="'align-items-' + (message.direction === 'in' ? 'start' : 'end')">
+        <div class="d-flex align-items-center mb-2">
+          <ng-container *ngIf="message.direction === 'in'">
+            <div class="symbol symbol-35px symbol-circle">
+              <span class="symbol-label bg-light-primary text-primary 40px">{{message.sender.displayName[0]}}</span>
+            </div>
+            <div class="ms-3">
+              <a class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">
+                {{ message.sender.displayName }}
+              </a>
+              <span class="text-muted fs-7 mb-1">{{ message.createdOn }}</span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="message.direction !== 'in'">
+            <div class="me-3">
+              <span class="text-muted fs-7 mb-1">{{ message.createdOn }}</span>
+              <a class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">
+                You
+              </a>
+            </div>
+            <div class="symbol symbol-35px symbol-circle">
+              <span class="symbol-label bg-light-primary text-primary 40px">{{message.sender.displayName[0]}}</span>
+            </div>
+          </ng-container>
+        </div>
+
+        <div [ngClass]="getMessageCssClass(message)" data-kt-element="message-text" [innerHTML]="message.message">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <!-- typing notification -->
+  <div *ngIf="_someoneIsTyping == true">
+    <div *ngFor="let typer of _whoIsTyping" class="typingIndicator">
+      <span>
+        <div class="container">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span> {{typer}} is typing...</span>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="card-footer pt-4" style="background-color: white;">
+  <input type="text" [(ngModel)]="textInput" class="form-control form-control-flush mb-3" id="messageInput" rows="1"
+    data-kt-element="input" placeholder="Type a message" (keydown)="enterKeyDownEvent($event)"
+    (keyup)="keyUpEvent($event)" style="margin-bottom: 4%;">
+
+  <div class="d-flex flex-stack">
+    <div class="d-flex align-items-center me-2">
+      <button class="btn btn-primary" style="border-radius: 50%;" (click)="showDropZone()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+
+    <button class="btn btn-primary" style="background-color:forestgreen; margin-right: 2%; border-radius: 50%;"
+      (click)="prepareToCall()">
+      <mat-icon matListIcon>phone</mat-icon>
+      <div style="color:red;"></div>
+    </button>
+
+    <button class="btn btn-primary" id="submitButton" type="button" data-kt-element="send" (click)="submitMessage()"
+      (keyup.enter)="submitMessage()" [disabled]="textInput == ''">
+      Send
+    </button>
+
+  </div>
+  <br>
+  <ngx-dropzone *ngIf="showDrop === true" (change)="onSelect($event)">
+    <ngx-dropzone-label>Upload your file</ngx-dropzone-label>
+  </ngx-dropzone>
+</div>

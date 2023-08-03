@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Add Item</h2>
+
+<mat-dialog-content [formGroup]="addItemForm">
+    <mat-form-field>
+        <input matInput placeholder="ItemName" formControlName="itemName">
+    </mat-form-field>
+    <p style="color:red" id="error"></p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-stroked-button color="primary" (click)="close()">Close</button>
+    <button mat-raised-button color="accent" (click)="add()">Add</button>
+</mat-dialog-actions>

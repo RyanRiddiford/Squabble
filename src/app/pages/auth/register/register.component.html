@@ -1,0 +1,138 @@
+<h1>Squabble</h1>
+
+<div class=sign-in-box>
+  <h2 *ngIf="isSsoRegistration">Single Sign-on Registration</h2>
+  <h2 *ngIf="!isSsoRegistration">Register</h2>
+
+  <h3>Take me back to <a id="sign-up-link" routerLink="/">login?</a></h3>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input id="username" type="text" class="form-control" formControlName="username">
+
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="invalid-feedback d-block">
+        <div *ngIf="username.errors?.required">
+          Username is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email">
+
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback d-block">
+        <div *ngIf="email.errors?.required">
+          Email is required.
+        </div>
+
+        <div *ngIf="email.errors?.email">
+          Invalid email address.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input id="firstName" type="text" class="form-control" formControlName="firstName">
+
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="invalid-feedback d-block">
+        <div *ngIf="firstName.errors?.required">
+          First name is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="surname" class="form-label">Surname</label>
+      <input id="surname" type="text" class="form-control" formControlName="surname">
+
+      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="invalid-feedback d-block">
+        <div *ngIf="surname.errors?.required">
+          Surname is required.
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isSsoRegistration">
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" type="password" class="form-control" formControlName="password">
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback d-block">
+          <div *ngIf="password.errors?.required">
+            Password is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="confirm-password" class="form-label">Confirm Password</label>
+        <input id="confirm-password" type="password" class="form-control" formControlName="confirmPassword">
+
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="invalid-feedback d-block">
+          <div *ngIf="confirmPassword.errors?.required">
+            Confirm password is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="sec-question-one" class="form-label">Security Question #1</label>
+        <input id="sec-question-one" type="text" class="form-control" formControlName="secQuestionOne">
+
+        <div *ngIf="secQuestionOne.invalid && (secQuestionOne.dirty || secQuestionOne.touched)" class="invalid-feedback d-block">
+          <div *ngIf="secQuestionOne.errors?.required">
+            Security question #1 is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="sec-answer-one" class="form-label">Security Answer #1</label>
+        <input id="sec-answer-one" type="text" class="form-control" formControlName="secAnswerOne">
+
+        <div *ngIf="secAnswerOne.invalid && (secAnswerOne.dirty || secAnswerOne.touched)" class="invalid-feedback d-block">
+          <div *ngIf="secAnswerOne.errors?.required">
+            Security answer #1 is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="sec-question-two" class="form-label">Security Question #2</label>
+        <input id="sec-question-two" type="text" class="form-control" formControlName="secQuestionTwo">
+
+        <div *ngIf="secQuestionTwo.invalid && (secQuestionTwo.dirty || secQuestionTwo.touched)" class="invalid-feedback d-block">
+          <div *ngIf="secQuestionTwo.errors?.required">
+            Security question #2 is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="sec-answer-two" class="form-label">Security Answer #2</label>
+        <input id="sec-answer-two" type="text" class="form-control" formControlName="secAnswerTwo">
+
+        <div *ngIf="secAnswerTwo.invalid && (secAnswerTwo.dirty || secAnswerTwo.touched)" class="invalid-feedback d-block">
+          <div *ngIf="secAnswerTwo.errors?.required">
+            Security answer #2 is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="invalid-feedback d-block">
+      <div *ngIf="registerForm.errors?.apiError">
+        {{ apiErrorMessage | json }}
+      </div>
+    </div>
+
+    <button *ngIf="!processingRegistration" class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+    <button *ngIf="processingRegistration" class="btn btn-primary" type="submit" disabled><fa-icon [icon]="faSpinner" [pulse]="true" class="mt-3"></fa-icon></button>
+  </form>
+</div>
+
+<app-blocks-background id=blocks1></app-blocks-background>
+<app-blocks-background id=blocks2></app-blocks-background>

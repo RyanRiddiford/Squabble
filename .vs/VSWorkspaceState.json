@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\call",
+    "\\src\\app\\pages\\call\\callee",
+    "\\src\\app\\pages\\call\\caller"
+  ],
+  "PreviewInSolutionExplorer": false
+}

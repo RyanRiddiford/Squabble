@@ -1,0 +1,21 @@
+<h5 style="text-align: center;" class="text-black">Incoming Call From {{data.callerName}}</h5>
+<p></p>
+<mat-dialog-content>
+  <mat-dialog-content>
+    <div class="d-flex flex-stack" style="justify-content: center;">
+    
+      <i class="Phone is-animating"></i>
+      </div>
+
+
+
+
+
+  </mat-dialog-content>
+
+  <div class="text-center pt-5">
+    <button class="mat-raised-button" id="reject" (click)="rejectCall()">Reject</button>
+    <button class="mat-raised-button mat-primary" style="margin-left: 10px; margin-top:10px;" (click)="acceptCall()"
+      id="accept">Accept</button>
+  </div>
+</mat-dialog-content>

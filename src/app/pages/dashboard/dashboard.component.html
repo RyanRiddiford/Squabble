@@ -1,0 +1,13 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="350px">
+    <!-- THIS IS THE CARD FOR A TEAM -->
+    <mat-grid-tile *ngFor="let server of listOfServerIDs">
+      <app-team-tile serverID={{server}}></app-team-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button (click)="createTeam()" mat-icon-button style="width:100px; height:100px; background-color:  cornflowerblue; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);">
+        <mat-icon style="width:100px; height:100px;">add</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

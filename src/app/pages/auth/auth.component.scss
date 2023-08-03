@@ -1,0 +1,80 @@
+h1{
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-top: 50px;
+  font-weight: 800;
+  font-size: 25pt;
+}
+
+.sign-in-box{
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  padding-bottom: 50px;
+  border-radius: 20px;
+  border-color: lightgrey;
+  box-shadow: 4px 4px 4px lightgrey;
+  h2{
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-weight: 800;
+    font-size: 25pt;
+  }
+  h3{
+    font-weight: 400;
+    font-size: 20pt;
+    display: inline;
+  }
+  #sign-up-link{
+    font-weight: 600;
+    color: #8C70FF;
+    text-decoration: none;
+  }
+  label{
+    display: block;
+    text-align: left;
+    margin-left: 10%;
+    font-weight: 800;
+    font-size: 14pt;
+    padding-top: 30px;
+    padding-bottom: 5px;
+
+  }
+  input{
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+  button{
+    width: 80%;
+    margin: 30px;
+    img{
+      padding-right: 10px;
+    }
+  }
+  #ms-btn{
+    border: solid #EFECFD 1px;
+    border-radius: 10px;
+  }
+  p{
+    margin:0;
+  }
+}
+
+#blocks1{
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+}
+#blocks2{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  transform: rotate(180deg);
+}

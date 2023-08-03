@@ -1,0 +1,59 @@
+<div class="flex-column mb-10 mb-lg-0">
+  <div class="card card-flush">
+    <div class="card-header pt-7">
+
+      <button style="background-color:darkkhaki; color:white;" class="btn btn-info w-auto mt-3" (click)="manageUsers()">Manage Members</button>
+      <button style="background-color: mediumaquamarine; color: white;" class="btn btn-info w-auto mt-3" (click)="addUserToTeam()">Add Member</button>
+
+    </div>
+    <hr  style="background-color: black; height: 5px;"/>
+    <div class="card-body pt-5 flex-lg-row-auto w-100">
+      <div class="scroll-y me-n5 h-lg-auto" style="overflow-y: scroll;">
+        <app-channels [serverId]="serverId" (selectedChannel)="channel = $event; setupChatServices();"></app-channels>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10 w-100" *ngIf="channel">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <div class="symbol-group symbol-hover">
+          <div class="symbol symbol-35px symbol-circle" *ngIf="chatParticipants[0]">
+            <span class="symbol-label bg-light-warning text-warning 30px">{{chatParticipants[0].userName[0]}}</span>
+          </div>
+          <div class="symbol symbol-35px symbol-circle" *ngIf="chatParticipants[1]">
+            <span class="symbol-label bg-light-danger text-danger 30px">{{chatParticipants[1].userName[0]}}</span>
+          </div>
+          <div class="symbol symbol-35px symbol-circle" *ngIf="chatParticipants[2]">
+            <span class="symbol-label bg-light-primary text-primary 30px">{{chatParticipants[2].userName[0]}}</span>
+          </div>
+          <a class="symbol symbol-35px symbol-circle cursor-pointer" *ngIf="chatParticipants.length > 3">
+            <span class="symbol-label fs-8 fw-bolder" data-bs-toggle="tooltip" data-bs-trigger="hover"
+              title="View more users">
+              +{{chatParticipants.length - 3}}
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card-toolbar">
+        <div class="me-n3">
+          <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <mat-icon style="color: black;">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="addUserToChannel()">Add Participant</button>
+            <button mat-menu-item (click)="removeUserFromChannel()">Remove Participant</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+      <app-chat-inner [channel]="channel"></app-chat-inner>
+  </div>
+</div>
+
+<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10 w-100" *ngIf="!channel">
+  <p class="mt-5 text-black text-center">Select a channel...</p>
+</div>

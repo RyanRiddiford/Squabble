@@ -1,0 +1,49 @@
+#circle {
+    background-color: lightblue;
+    height: 80%;
+    width: 80%;
+    max-width: 250px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50%;
+    margin: auto;
+
+    h1{
+        padding-top: 40%;
+        padding-left: 25%;
+    }
+
+    
+}
+
+.team-card {
+  box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3);
+  position: absolute;
+top: 15px;
+left: 15px;
+right: 15px;
+bottom: 15px;
+}
+
+.text-team {
+  margin: auto;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: rgb(54, 54, 54);
+}
+
+.pt-5{
+
+  padding-top: 7rem!important
+}
+
+.text-black {
+
+  font-weight: 600!important;
+}

@@ -1,0 +1,27 @@
+#remote-participants-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  grid-auto-rows: 40%;
+
+
+}
+
+
+
+.participant-container {
+
+    color:black;
+    border: solid;
+    border-color: darkgray;
+    margin-top: 15px;
+    margin-bottom: 20px;
+
+}
+
+
+#local {
+    width:30%;
+    height:30%;
+}
+

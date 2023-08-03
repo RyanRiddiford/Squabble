@@ -1,0 +1,74 @@
+
+<div class="container">
+
+  <div class="list" style="width: 32%;">
+    <h2 style="text-align: center;">To Do</h2>
+      <button class="btn btn-success" style="width:100%" (click)="addItem(toDo, 'toDo')">New Item</button>
+
+    <div cdkDropList
+         class="list"
+         #todoList="cdkDropList"
+         [cdkDropListData]="toDo"
+         [cdkDropListConnectedTo]="[doneList, inProgressList]"
+         (cdkDropListDropped)="drop($event)">
+      <div class="item-box" *ngFor="let item of toDo" cdkDrag [cdkDragData]="item">
+        {{ item.itemName }}
+        <div class="buttons">
+          <button (click)='editItemName(item, toDo)'>
+            <!-- Image copyright: Fonticons, Inc. https://fontawesome.com/license-->
+            <img src="../../../assets/images/edit-solid.svg" alt="" width="14" height="14">
+          </button>
+          <button (click)='deleteItem(item, toDo)'>
+            <!-- Image copyright: Fonticons, Inc. https://fontawesome.com/license-->
+            <img src="../../../assets/images/trash-solid.svg" alt="" width="14" height="14">
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="list" style="width: 32%;">
+    <h2 style="text-align: center;">In Progress</h2><button class="btn btn-success" style="width:100%" (click)="addItem(inProgress, 'inProgress')">New item</button>
+    <div cdkDropList
+         class="list"
+         #inProgressList="cdkDropList"
+         [cdkDropListData]="inProgress"
+         [cdkDropListConnectedTo]="[todoList, doneList]"
+         (cdkDropListDropped)="drop($event)">
+      <div class="item-box" *ngFor="let item of inProgress" cdkDrag [cdkDragData]="item">{{item.itemName}}
+        <div>
+          <button (click)='editItemName(item, inProgress)'>
+            <!-- Image copyright: Fonticons, Inc. https://fontawesome.com/license-->
+            <img src="../../../assets/images/edit-solid.svg" alt="" width="14" height="14">
+          </button>
+          <button (click)='deleteItem(item, inProgress)'>
+            <!-- Image copyright: Fonticons, Inc. https://fontawesome.com/license-->
+            <img src="../../../assets/images/trash-solid.svg" alt="" width="14" height="14">
+          </button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="list" style="width: 32%;">
+    <h2 style="text-align: center;">Done</h2><button class="btn btn-success" style="width:100%" (click)="addItem(done, 'done')">New item</button>
+    <div cdkDropList
+         class="list"
+         #doneList="cdkDropList"
+         [cdkDropListData]="done"
+         [cdkDropListConnectedTo]="[todoList, inProgressList]"
+         (cdkDropListDropped)="drop($event)">
+      <div class="item-box" *ngFor="let item of done" cdkDrag [cdkDragData]="item">{{item.itemName}}
+        <div>
+          <button (click)='editItemName(item, done)'>
+            <!-- Image copyright: Fonticons, Inc. https://fontawesome.com/license-->
+            <img src="../../../assets/images/edit-solid.svg" alt="" width="14" height="14">
+          </button>
+          <button (click)='deleteItem(item, done)'>
+            <!-- Image copyright: Fonticons, Inc. https://fontawesome.com/license-->
+            <img src="../../../assets/images/trash-solid.svg" alt="" width="14" height="14">
+          </button></div>
+      </div>
+    </div>
+  </div>
+</div>

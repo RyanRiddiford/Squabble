@@ -1,0 +1,105 @@
+<div class="card-profile">
+  <!--begin::Card header-->
+  <div class="card-header">
+    <!--begin::Card title-->
+    <div class="card-title m-0">
+      <h5 class="fw-bolder m-0" style="color: black; margin-left: 10%;">Profile Details</h5>
+    </div>
+  </div>
+  <!--begin::Card header-->
+  <!--begin::Content-->
+  <!--begin::Form-->
+  <form *ngIf="!editProfile && !changePassword" class="form-card">
+    <div class="col-lg-8">
+      <!--begin::Image input-->
+      <div class="image-input image-input-outline" data-kt-image-input="true" [ngStyle]="{ 'background-image': 'url(' + avatarUrl + ')'}">
+        <!--begin::Preview existing avatar-->
+
+      </div>
+
+    </div>
+    <!--end::Image input-->
+    <div class="mb-3">
+      <label for="username-read-only" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username-read-only" [value]="username" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="email-read-only" class="form-label">Email</label>
+      <input type="text" class="form-control" id="email-read-only" [value]="email" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="first-name-read-only" class="form-label">First name</label>
+      <input type="text" class="form-control" id="first-name-read-only" [value]="firstName" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="surname-read-only" class="form-label">Surname</label>
+      <input type="text" class="form-control" id="surname-read-only" [value]="surname" readonly>
+    </div>
+
+    <button *ngIf="!editProfile && !changePassword" type="button" class="btn btn-primary" (click)="editProfile = true">Edit profile</button>
+    <button *ngIf="!editProfile && !changePassword && !isSso" type="button" class="btn btn-primary" (click)="changePassword = true">Change password</button>
+  </form>
+
+  <form  *ngIf="editProfile" [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()" class="form-card">
+    <div [ngStyle]="{ 'background-image': 'url(' + avatarUrl + ')'}" class="image-input image-input-outline" data-kt-image-input="true">
+
+      <!--begin::Preview existing avatar-->
+      <!--end::Preview existing avatar-->
+      <!--begin::Label-->
+
+
+
+    </div>
+    <input class="form-control" type="file" (change)="onChange($event)">
+    <button (click)="imageSelected()" class="btn btn-success">
+      Upload
+    </button>
+
+
+    <!--end::Image input-->
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="first-name" class="form-label">First name</label>
+      <input type="text" class="form-control" id="first-name" formControlName="firstName">
+    </div>
+    <div class="mb-3">
+      <label for="surname" class="form-label">Surname</label>
+      <input type="text" class="form-control" id="surname" formControlName="surname">
+    </div>
+
+    <button class="btn btn-danger" (click)="editProfile = false">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!updateProfileForm.valid">Submit</button>
+
+  </form>
+
+  <form  *ngIf="changePassword" [formGroup]="changePasswordForm" (ngSubmit)="updatePassword()" class="form-card">
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm password</label>
+      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+    </div>
+
+    <div *ngIf="password.dirty || password.touched" class="invalid-feedback d-block">
+      <div *ngIf="confirmPassword.dirty || confirmPassword.touched">
+        <div *ngIf="changePasswordForm.errors?.passwordMatchFailed">
+          Passwords must match.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-danger" (click)="changePassword = false">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!changePasswordForm.valid">Submit</button>
+  </form>
+  <!--end::Form-->
+</div>

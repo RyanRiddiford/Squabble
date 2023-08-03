@@ -1,0 +1,86 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Participant Management</h4>
+    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Add Participant</label>
+        <select style="color: black;" [(ngModel)]="participantToAdd" class="form-control form-control-solid px-15" id="participantToAdd"
+                name="participantToAdd">
+          <option [ngValue]="null" disabled>Select Participant to Add</option>
+          <option *ngFor="let contact of absentParticipants" [ngValue]="contact">{{contact.userName}}</option>
+        </select>
+        <p></p>
+        <button (click)="addParticipant()" id="add-participant" mat-fab style="background-color:gray; color:white;">
+          Add
+        </button>
+        <p></p>
+        <label>Kick Participant</label>
+        <select style="color: black;" [(ngModel)]="participantToKick" class="form-control form-control-solid px-15" id="participantToKick"
+                name="participantToKick">
+          <option [ngValue]="null" disabled>Select Participant to Kick</option>
+          <option *ngFor="let contact of activeParticipants" [ngValue]="contact">{{contact.userName}}</option>
+        </select>
+        <p></p>
+        <button (click)="kickParticipant()" id="kick-participant" mat-fab style="background-color:gray; color:white;">
+          Kick
+        </button>
+        <p></p>
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="modal.close('Save click')" class="btn btn-outline-dark" type="button">Save</button>
+  </div>
+</ng-template>
+
+<div class="flex-column mb-lg-0" style="margin-top: 10px; margin-right: 10px; margin-left: 10px; margin-right: 10px; height: 70%">
+  <div class="card card-flush" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+    <div class="card-body pt-5 flex-lg-row-auto w-100">
+
+      <div *ngIf="isInCall == true">
+        <h2 style="color:black">Call State: <span id="call-state" style="color:black"></span></h2>
+      </div>
+
+      <div *ngIf="isInCall == true">
+        <div class="participant-container" id="local">
+        </div>
+
+        <div id="remote-participants-wrapper">
+        </div>
+      </div>
+
+      <div *ngIf="isLeftCall == true">
+        <h2 style="font-weight:bolder; color:black;">{{callEndedMessage}}</h2>
+      </div>
+    </div>
+
+    <div *ngIf="isInCall == true" class="card-footer pt-4" style="background-color: white;">
+      <div class="d-flex flex-stack" style="justify-content: center;">
+        <div class="example-button-container" style="margin:10px">
+          <button (click)="toggleMute()" mat-fab style="background-color:gray; color:white;">
+            <mat-icon id="mute-button">mic_off</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="(isAdmin == true || isOwner == true) && isInCall == true">
+          <div class="example-button-container" style="margin:10px">
+            <button (click)="open(content)" mat-fab style="background-color:rgb(255, 94, 94); color:white;">
+              <mat-icon>settings</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="example-button-container" style="margin:10px">
+          <button (click)="endCall()" id="end-button" mat-fab style="background-color:rgb(255, 94, 94); color:white;">
+            <mat-icon>call_end</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

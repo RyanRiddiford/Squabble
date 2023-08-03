@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Delete Item?</h2>
+
+<mat-dialog-content [formGroup]="deleteItemForm">
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-stroked-button color="primary" (click)="cancel()">Cancel</button>
+    <button mat-stroked-button color="accent" (click)="delete()">Delete</button>
+</mat-dialog-actions>

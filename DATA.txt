@@ -1,0 +1,1 @@
+See the "Squabble-Server" DATA.txt for database information.

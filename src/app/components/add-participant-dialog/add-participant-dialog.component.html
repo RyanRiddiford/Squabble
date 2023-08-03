@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Add Participant</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput placeholder="ACS ID" formControlName="acsId">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-stroked-button color="primary" (click)="close()">Close</button>
+    <button mat-raised-button color="accent" (click)="add()">Add</button>
+</mat-dialog-actions>

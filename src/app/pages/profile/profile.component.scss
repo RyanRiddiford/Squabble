@@ -1,0 +1,126 @@
+.profile-heading {
+  color: #535353;
+  text-align: center;
+}
+
+.form-card {
+  color: #535353;
+  background-color: #ffffff;
+  text-align: center;
+  padding-bottom: 50px;
+
+  h3 {
+    font-weight: 300;
+    font-size: 20pt;
+    display: inline;
+  }
+
+  label {
+    display: block;
+    text-align: left;
+    margin-left: 10%;
+    font-weight: 800;
+    font-size: 14pt;
+    padding-top: 15px;
+    padding-bottom: 5px;
+  }
+
+  input {
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+
+  button {
+    width: 80%;
+    margin: 30px;
+    img {
+      padding-right: 10px;
+    }
+  }
+
+  #ms-btn {
+    border: solid #efecfd 1px;
+    border-radius: 10px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.card-profile {
+  border: 0;
+  box-shadow: 0 0 20px 0 rgba(76, 87, 125, 0.02);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  word-wrap: break-word;
+  background-color: #fff;
+  border-radius: 0.475rem;
+  background-clip: border-box;
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+    margin-left: 0;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    min-height: 70px;
+    padding: 0 2.25rem;
+    background-color: transparent;
+    border-bottom: 1px solid #eff2f5;
+  }
+
+  .card-header:first-child {
+    border-radius: calc(0.475rem - 1px) calc(0.475rem - 1px) 0 0;
+  }
+}
+
+.image-input {
+  position: relative;
+  width: 175px;
+  height: 150px;
+  margin-left: 10%;
+  margin-top:20px;
+
+  margin-bottom:20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 0.5rem 0.5rem 0.5rem rgba(119, 119, 119, 0.075);
+  border-radius: .475rem;
+
+
+}
+
+.image-input [data-kt-image-input-action=change] {
+  cursor: pointer;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  }
+
+
+
+    .example-button-container {
+      display: flex;
+      justify-content: center;
+      width: 40px;
+      height:40px;
+    }
+
+    .col-lg-8 {
+      flex: 0 0 auto;
+      width: 100%;
+      }

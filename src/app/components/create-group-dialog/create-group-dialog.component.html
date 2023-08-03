@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Create Channel</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput placeholder="Channel name" formControlName="groupName">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-stroked-button color="primary" (click)="close()">Close</button>
+    <button mat-stroked-button color="accent" (click)="create()">Create</button>
+</mat-dialog-actions>

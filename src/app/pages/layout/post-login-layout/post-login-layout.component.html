@@ -1,0 +1,66 @@
+<div *ngIf="callClientService.isLoaded == false">
+  <mat-spinner style=" position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0;"></mat-spinner>
+</div>
+
+<mat-sidenav-container *ngIf="callClientService.isLoaded == true" class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <a [routerLink]="['/dashboard']">
+          <img alt="Logo"
+               class="img-logo"
+               src="/assets/images/SquabbleIcon.png" />
+        </a>
+        <h2 [routerLink]="['/dashboard']" style="cursor: pointer;">Squabble</h2>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a [routerLink]="['/dashboard']" mat-list-item (click)="toggleActive($event)">
+        <mat-icon matListIcon>dashboard</mat-icon>
+        <h3 matLine> Teams </h3>
+      </a>
+
+      <a [routerLink]="['/contacts']" mat-list-item (click)="toggleActive($event)">
+        <mat-icon matListIcon>contact_phone</mat-icon>
+        <h3 matLine> Contacts </h3>
+      </a>
+
+      <a [routerLink]="['/kanban']" mat-list-item (click)="toggleActive($event)">
+        <mat-icon matListIcon>featured_play_list</mat-icon>
+        <h3 matLine> Kanban </h3>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()">
+        <fa-icon [icon]="faBars" (click)="toggleState()"></fa-icon>
+      </button>
+      <span class="example-spacer"></span>
+
+      <input type="image" [matMenuTriggerFor]="menu"
+             aria-label="Toggle menu"
+             class="profile-img"
+             [src]="avatarUrl">
+
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="/profile">Profile</button>
+        <mat-divider></mat-divider>
+        <button (click)="logout()" mat-menu-item>Logout</button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

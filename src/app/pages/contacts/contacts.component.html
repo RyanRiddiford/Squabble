@@ -1,0 +1,69 @@
+<div class="row h-100">
+  <div class="col-4 vh-100">
+    <div class="card card-flush" style="overflow-y: scroll;">
+      <button class="btn btn-success m-3 text-white" (click)="addFriend()">Add Friend</button>
+
+      <ng-container *ngIf="pendingFriendsForMeToAccept.length > 0 || pendingFriendsForThemToAccept.length > 0">
+        <h5 class="text-center mb-3">Pending requests</h5>
+
+        <div class="row contact-row" *ngFor="let pendingFriendForMe of pendingFriendsForMeToAccept">
+          <div class="col-2 initials">
+            {{ pendingFriendForMe.senderUsername.charAt(0) }}
+          </div>
+
+          <div class="col-4">
+            {{ pendingFriendForMe.senderUsername }}
+          </div>
+
+          <div class="col-6">
+            <button class="btn btn-sm btn-success me-1 text-white" (click)="acceptFriendRequest(pendingFriendForMe, true)">Accept</button>
+            <button class="btn btn-sm btn-danger text-white" (click)="acceptFriendRequest(pendingFriendForMe, false)">Deny</button>
+          </div>
+        </div>
+
+        <div class="contact-row" *ngFor="let pendingFriendForThem of pendingFriendsForThemToAccept">
+          <div class="initials">
+            {{ pendingFriendForThem.receiverUsername.charAt(0) }}
+          </div>
+
+          {{ pendingFriendForThem.receiverUsername }}
+          <small>
+            <small class="text-black-50">
+              (Waiting on {{ pendingFriendForThem.receiverUsername }} to accept)
+            </small>
+          </small>
+        </div>
+      </ng-container>
+
+      <h5 class="text-center my-3">Friends</h5>
+
+      <div class="contact-row" *ngFor="let friend of friends" (click)="loadChat(friend)">
+        <div class="initials">
+          {{ getInitials(friend.firstName, friend.surname) }}
+        </div>
+
+        {{ friend.firstName }} {{ friend.surname }}
+
+        <!--
+        <div id="buttons">
+          <button (click)=displayFriendInfo(friend)>i</button>
+          <button>A</button>
+          <button>V</button>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div class="flex-lg-row-fluid ms-lg-7 ms-xl-10 w-100" *ngIf="selectedChannel">
+      <div class="card">
+        <app-chat-inner [channel]="selectedChannel"></app-chat-inner>
+      </div>
+    </div>
+
+    <div class="flex-lg-row-fluid ms-lg-7 ms-xl-10 w-100" *ngIf="!selectedChannel">
+      <p class="mt-5 text-black text-center">Select a friend...</p>
+    </div>
+  </div>
+</div>

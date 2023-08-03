@@ -1,0 +1,28 @@
+<h1>Squabble</h1>
+
+<div class=sign-in-box>
+    <h2>Sign in to Squabble</h2>
+
+    <h3>New here? <a id="sign-up-link" routerLink="/register">Sign up</a></h3>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label for="UserName">Username</label>
+        <input class="form-control form-control-md" id="UserName" type="text" formControlName="UserName">
+        <label for="Password">Password </label>
+        <input class="form-control form-control-md" id="Password" type="password" formControlName="Password">
+        <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+        <p>OR</p>
+        <button type="button" class="btn btn-light" (click)="signInWithMicrosoft()">
+          <img src="../../../../assets/ms-symbollockup_mssymbol_19.svg">Sign in with Microsoft
+        </button>
+    </form>
+
+    <div class="me-5 text-end">
+      <a routerLink="/reset-password" class="link-secondary text-decoration-none">
+        Forgot password?
+      </a>
+    </div>
+</div>
+
+<app-blocks-background id=blocks1></app-blocks-background>
+<app-blocks-background id=blocks2></app-blocks-background>

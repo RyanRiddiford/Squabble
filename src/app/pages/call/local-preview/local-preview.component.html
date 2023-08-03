@@ -1,0 +1,77 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Device settings</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Camera </label>
+        <select style="color:black" [(ngModel)]="selectedCam" (change)="createVideoRender()" class="form-control form-control-solid px-15" name="selectedCam"
+                id="selectedCam">
+          <option [ngValue]="null" disabled>Select Camera</option>
+          <option [ngValue]="null">No Camera</option>
+          <option *ngFor="let cam of callClientService.cameras" [ngValue]="cam">{{cam.name}}</option>
+        </select>
+        <p></p>
+
+        <label>Audio Devices</label>
+
+        <select style="color:black" [(ngModel)]="selectedMic" class="form-control form-control-solid px-15" name="selectedMic"
+                id="selectedMic">
+          <option [ngValue]="null" disabled>Select Microphone</option>
+          <option *ngFor="let mic of callClientService.mics" [ngValue]="mic">{{mic.name}}</option>
+        </select>
+        <p></p>
+
+        <label>Speaker</label>
+
+        <select style="color:black" [(ngModel)]="selectedSpeaker" class="form-control form-control-solid px-15" name="selectedSpeaker"
+                id="selectedSpeaker">
+          <option [ngValue]="null" disabled>Select Speaker</option>
+          <option *ngFor="let speaker of callClientService.speakers" [ngValue]="speaker">{{speaker.name}}</option>
+        </select>
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<div class="flex-column mb-lg-0"
+     style="margin-top: 10px; margin-right: 10px; margin-left: 10px; margin-right: 10px; height: 70%">
+  <div class="card card-flush" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+
+    <div class="card-body pt-5 flex-lg-row-auto w-100">
+
+      <div style="padding: 10px; background-color: #b7b5b5; height:50%; width:50%; border-radius: 10px; margin-bottom: 20px; margin-left:25%;"
+           id="localVideoContainer">
+        <div *ngIf="selectedCam == null">
+          <img style="height:50%; width:100%;" alt="no video" src="../../../../assets/images/NO-VIDEO-SOURCE-SELECTED.png">
+        </div>
+      </div>
+
+      <div class="d-flex flex-stack" style="justify-content: center;">
+        <button disabled id="confirm-button" class="btn primary" style="margin-bottom: 20px; text-align: center; justify-content: center; background-color: cornflowerblue; color: white;" (click)="confirmCallOptions()">{{joinOrStart}} Call</button>
+      </div>
+
+      <div class="card-footer pt-4" style="background-color: white;">
+        <div class="d-flex flex-stack" style="justify-content: center;">
+          <div class="example-button-container" style="margin:10px">
+            <button (click)="open(content)" mat-fab style="background-color:rgb(255, 94, 94); color:white;">
+              <mat-icon>settings</mat-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

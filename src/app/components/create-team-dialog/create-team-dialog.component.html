@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Create Team</h2>
+
+<mat-dialog-content [formGroup]="createTeamForm">
+    <mat-form-field>
+        <input matInput placeholder="Team Name" formControlName="Name">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-stroked-button color="primary"  (click)="close()">Close</button>
+    <button mat-raised-button color="accent" (click)="create()">Create</button>
+</mat-dialog-actions>

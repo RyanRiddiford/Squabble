@@ -1,0 +1,105 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-drawer-container {
+  background-color: #E5E5E5;
+  color: #fff;
+}
+
+
+.mat-button, .mat-icon-button, .mat-stroked-button {
+  color: #535353;
+  background: transparent;
+}
+
+
+
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
+  font-weight: 600;
+  color: #535353;
+  letter-spacing: normal;
+  margin: 0;
+}
+
+
+.img-logo {
+  width: 35px;
+  height: 30px;
+  padding-left: 5px;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 0.5rem 0.5rem rgba(119, 119, 119, 0.075);
+}
+
+
+.mat-list-base .mat-list-item {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #535353;
+}
+
+.mat-list-base .mat-list-item .mat-list-icon, .mat-list-base .mat-list-option .mat-list-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.mat-grid-tile-content {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  margin: 0;
+}
+
+.button-open {
+  display: inline-block;
+  transform: rotate(180deg);
+  transition: all linear 200ms;
+}
+
+.button-close {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: all linear 200ms;
+}
+
+.mat-fab .mat-button-wrapper {
+ padding: 0px !important;
+}

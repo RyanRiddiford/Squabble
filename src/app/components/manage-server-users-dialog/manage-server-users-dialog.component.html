@@ -1,0 +1,171 @@
+<!--begin::Modal header-->
+<div
+  style="text-align: center; padding-bottom:5%"
+  class="fs-4 fw-bold mx-5 border-bottom border-gray-300 border-bottom-dashed"
+>
+  User Management
+  <ng-template #tooltipTemplate>Owners can only become Admins.<br><br>Admins can become Owners or Members.<br><br>Members can become Admins or be removed.</ng-template>
+  <fa-icon
+    [icon]="faQuestionCircle"
+    class="ms-3"
+    [tooltip]="tooltipTemplate"
+    placement="bottom"
+  ></fa-icon>
+</div>
+<br>
+<!--begin::Modal body-->
+<div style="height: 500px; overflow-y: scroll;" class="mx-5 mx-xl-18 pt-0 pb-15">
+  <div class="fs-6 fw-bold mb-2">Owner</div>
+
+  <div class="mh-300px me-n7 pe-7">
+    <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+      <!--begin::Details-->
+      <div class="d-flex align-items-center">
+        <!--begin::Avatar-->
+        <img
+          style="
+            display: inline-block;
+            flex-shrink: 0;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: .475rem;
+            width: 50px;
+            border-radius: 50%;
+            height: 50px;
+          "
+          [src]="getAvatarUrl(data.owner.user)"
+        >
+        <!--end::Avatar-->
+        <!--begin::Details-->
+        <div style="margin-left: 10px;">
+          <div *ngIf="data.owner.user.accountId !== this.userId" class="fs-6 fw-bold">
+            {{ data.owner.user.userName }}
+          </div>
+          <div *ngIf="data.owner.user.accountId === this.userId" class="fs-6 fw-bold">
+            {{ data.owner.user.userName }}
+          </div>
+          <p style="color:#a1a5b7; font-weight: 400; margin-right: 5%">{{ data.owner.user.email }}</p>
+        </div>
+        <!--end::Details-->
+      </div>
+    </div>
+    <br>
+    <!--begin::Heading-->
+    <div class="fs-6 fw-bold mb-2">Admins</div>
+    <!--end::Heading-->
+    <!--begin::List-->
+
+    <div *ngIf="data.admins.length > 0" class="mh-300px me-n7 pe-7">
+      <!--begin::User-->
+      <div *ngFor="let admin of data.admins"
+           class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+        <!--begin::Details-->
+        <div class="d-flex align-items-center">
+          <!--begin::Avatar-->
+          <img
+            style="
+            display: inline-block;
+            flex-shrink: 0;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: .475rem;
+            width: 50px;
+            border-radius: 50%;
+            height: 50px;
+          "
+            [src]="getAvatarUrl(admin.user)"
+          >
+          <!--end::Avatar-->
+          <!--begin::Details-->
+          <div style="margin-left: 10px;">
+            <div class="fs-6 fw-bold">
+              {{ admin.user.userName }}
+              <span *ngIf="admin.user.accountId === this.userId">(Me)</span>
+            </div>
+            <p style="color:#a1a5b7; font-weight: 400; margin-right: 5%">{{ admin.user.email }}</p>
+          </div>
+          <!--end::Details-->
+        </div>
+        <!--end::Details-->
+        <!--begin::Access menu-->
+        <button *ngIf="isOwner && admin.user.accountId !== this.userId" (click)="makeAdminAnOwner(admin.user.accountId)"
+                [disabled]="isProcessingRequest" style="margin: auto;" class="btn btn-secondary btn-sm" type="button">
+          Make Owner
+        </button>
+        <button *ngIf="(isOwner || isAdmin) && admin.user.accountId !== this.userId"
+                (click)="makeUserMember(admin.user.accountId)" [disabled]="isProcessingRequest" style="margin: auto;"
+                class="btn btn-secondary btn-sm" type="button">
+          Make Member
+        </button>
+        <!--end::Access menu-->
+      </div>
+      <!--end::User-->
+    </div>
+    <!--end::List-->
+    <br>
+    <!--begin::Heading-->
+    <div class="fs-6 fw-bold mb-2">Members</div>
+    <!--end::Heading-->
+    <!--begin::List Members-->
+    <div *ngIf="data.members.length > 0" class="mh-300px me-n7 pe-7">
+      <!--begin::User-->
+      <div *ngFor="let member of data.members"
+           class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+        <!--begin::Details-->
+        <div class="d-flex align-items-center">
+          <!--begin::Avatar-->
+          <img
+            style="
+            display: inline-block;
+            flex-shrink: 0;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: .475rem;
+            width: 50px;
+            border-radius: 50%;
+            height: 50px;
+          "
+            [src]="getAvatarUrl(member.user)"
+          >
+          <!--end::Avatar-->
+          <!--begin::Details-->
+          <div style="margin-left: 10px;">
+            <div *ngIf="member.user.accountId !== this.userId" class="fs-6 fw-bold">{{ member.user.userName }}</div>
+            <div *ngIf="member.user.accountId === this.userId" class="fs-6 fw-bold">{{ member.user.userName }}</div>
+
+            <p style="color:#a1a5b7; font-weight: 400; margin-right: 5%">{{ member.user.email }}</p>
+          </div>
+          <!--end::Details-->
+        </div>
+        <!--end::Details-->
+        <!--begin::Access menu-->
+
+
+        <div>
+          <button
+            *ngIf="isOwner || isAdmin" (click)="makeUserAdmin(member.user.accountId)"
+            [disabled]="isProcessingRequest"
+            style="margin: auto; width: 150px;"
+            class="btn btn-secondary btn-sm my-1"
+            type="button"
+          >
+            Make Admin
+          </button>
+          <button
+            *ngIf="isOwner || isAdmin" (click)="removeUser(member.user.accountId)"
+            [disabled]="isProcessingRequest"
+            style="margin: auto; width: 150px;"
+            class="btn btn-danger btn-sm my-1"
+            type="button"
+          >
+            Remove User
+          </button>
+        </div>
+      </div>
+      <!--end::Access menu-->
+      <!--end::User-->
+    </div>
+    <!--end::List-->
+  </div>
+  <!--end::Users-->
+</div>
